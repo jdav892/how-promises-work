@@ -23,5 +23,19 @@ class PromiseExample {
 
     onResolve(value){
         let storedValue = value;
+
+        try{
+            this.promiseChain.forEach((nextFunction) => {
+                storeValue = nextFunction(storedValue);
+            });
+        } catch (error) {
+            this.promiseChain = [];
+            
+            this.onReject(error);
+        }
+    }
+
+    onReject(error){
+        this.handleError(error);
     }
 }
