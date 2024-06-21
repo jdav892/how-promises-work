@@ -41,7 +41,7 @@ class PromiseExample {
     }
 }
 
-fakeApiBackend = () => {
+fakeApi = () => {
     const user = {
         username: 'Justin',
         favoriteNumber: 9,
@@ -49,5 +49,17 @@ fakeApiBackend = () => {
     };
 
     //Simulate error probability with randomization
-    
-}
+    if(Math.random() > .05){
+        return {
+            data: user,
+            statusCode: 200,
+        };
+    }else{
+        const error = {
+            statusCode: 404,
+            message: 'Could not find user',
+            error: 'Not Found'
+        };
+        return error;
+    }
+};
