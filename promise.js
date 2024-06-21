@@ -5,10 +5,11 @@ class PromiseExample {
 
         this.onResolve = this.onResolve.bind(this);
         this.onReject = this.onReject.bind(this);
-        
+        //Takes resolve and reject which map to the internal onResolve() and onReject()
+        //These are called when the fetch calls the resolve or reject
         executionFunction(this.onResolve, this.onReject);
     }
-
+//In the native Promise in JavaScript, then() and catch() return a new Promise
     then(handleSuccess){
         this.promiseChain.push(handleSuccess);
 
@@ -38,4 +39,15 @@ class PromiseExample {
     onReject(error){
         this.handleError(error);
     }
+}
+
+fakeApiBackend = () => {
+    const user = {
+        username: 'Justin',
+        favoriteNumber: 9,
+        profile: 'github.com/jdav892'
+    };
+
+    //Simulate error probability with randomization
+    
 }
