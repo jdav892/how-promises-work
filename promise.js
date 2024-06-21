@@ -63,3 +63,23 @@ fakeApi = () => {
         return error;
     }
 };
+
+//Assume this is AJAX library almost all newer ones return Promise Object
+
+const makeApiCall = () => {
+    return new PromiseExample((resolve, reject) => {
+        //Use a timeout to simulate network delay for the response
+        //This is the reason you use a promise, it waits for the API to respond
+        //After received, executes in the `then()` blocks in order
+        //If it executed immediately, there would be no data
+        setTimeout(() => {
+            const apiResponse = fakeApi();
+
+            if(apiResponse.statusCode >= 400) {
+                reject(apiResponse);
+            }else{
+                resolve(apiResponse.data);
+            }
+        }, 5000);
+    })
+}
