@@ -99,7 +99,7 @@ makeApiCall()
         return user;
     })
     .then((user) => {
-        console.log(`The profile URL is ${profile}`);
+        console.log(`The profile URL is ${user.profile}`);
     })
     .then(() => {
         console.log('This is the last then()');
@@ -107,3 +107,5 @@ makeApiCall()
     .catch((error) => {
         console.error(error.message);
     }) 
+
+    // This was fun and very illuminating to say the least
